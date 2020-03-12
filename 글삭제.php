@@ -16,23 +16,28 @@ ini_set("display_errors", "1");
     $row2 = mysqli_fetch_array($result2);
     $writer = $row2['writer'];
 
-	if($id!=$writer || $id!='admin'){
-
-		echo "<script>
-			   alert( '작성자가 아니면 삭제하실 수 없습니다.' );
-			   history.back();
-		      </script>
-		     ";
-    }
-	else{
+	if($id==$writer || $id=="admin"){
    		$num = $_GET["idx"];
 	        $sql = 'DELETE FROM `board` WHERE `board`.`num` ='.$num;
             $result =  mysqli_query($conn, $sql);
             if($result){
-                echo 'success';
+                	echo "<script>
+			   alert( '삭제되었습니다.' );
+			      location.href='글목록.php';
+		      </script>
+		     ";
             }
             else{
                 echo 'fail';
             }
+			
+
+    }
+	else{
+	echo "<script>
+			   alert( '작성자가 아니면 삭제하실 수 없습니다.' );
+			   history.back();
+		      </script>
+		     ";
 }
 ?>

@@ -20,7 +20,7 @@ INSERT INTO `Profile` (`id`, `password`, `address`, `name`, `sex`, `phone_num`, 
 VALUES ('".$id."','".$pw."','".$address."','".$name."','".$sex."','".$phone_num."','".$email."');
 ";
 $result = mysqli_query($conn, $sql);
-if($result === false){
-    echo mysqli_error($conn);
-}
+echo '<script>alert("회원가입 되셨습니다.");
+		location.href="로그인페이지.html";
+</script>';
 ?>

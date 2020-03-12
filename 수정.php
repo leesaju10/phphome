@@ -24,6 +24,7 @@ $result = mysqli_query($conn, $sql1);
         echo '<pre>';
         if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
             echo "파일이 유효하고, 성공적으로 업로드 되었습니다.\n";
+	    ehco '<script>location.href='글목록.php'</script>';
         } 
         else {
             print "파일 업로드 공격의 가능성이 있습니다!\n";
