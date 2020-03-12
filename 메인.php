@@ -10,8 +10,12 @@
         환영합니다!
     </h1>
     <br>
-    <?php echo $_SESSION['id']; ?>님!
+    <?php $id=$_SESSION['id'];
+	echo $id; ?>님!
     <a href="글목록.php">글 목록 가기</a><br>
-    <button type="button"onclick = "location.href='로그아웃.php'">로그아웃</button>
+    <a href="회원정보관리.php">회원정보관리 가기</a><br>
+    <?php if($id=='admin'){
+	echo '<a href="관리자페이지.php">관리자페이지 가기</a>';}?>
+<button type="button"onclick = "location.href='로그아웃.php'">로그아웃</button>
     </body>
 </html>

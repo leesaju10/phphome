@@ -10,6 +10,11 @@ $conn = mysqli_connect(
 mysqli_query($conn,"set names utf8");
     $id = $_POST['id'];
 	$pw = $_POST['password'];
+echo $pw;
+
+$encrypted_passwd = password_hash($pw, PASSWORD_DEFAULT);
+echo $encrypted_passwd;
+
     $name = $_POST['name'];
     $sex = $_POST['sex'];
 	$phone_num = $_POST['phone_num'];
@@ -17,10 +22,10 @@ mysqli_query($conn,"set names utf8");
     $address = $_POST['address'];
 $sql  = "
 INSERT INTO `Profile` (`id`, `password`, `address`, `name`, `sex`, `phone_num`, `email`) 
-VALUES ('".$id."','".$pw."','".$address."','".$name."','".$sex."','".$phone_num."','".$email."');
+VALUES ('".$id."','".$encrypted_passwd."','".$address."','".$name."','".$sex."','".$phone_num."','".$email."');
 ";
 $result = mysqli_query($conn, $sql);
-if($result === false){
-    echo mysqli_error($conn);
-}
+echo '<script>alert("회원가입 되셨습니다.");
+		location.href="로그인페이지.html";
+</script>';
 ?>
