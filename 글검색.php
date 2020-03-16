@@ -10,17 +10,21 @@ mysqli_query($conn,"set session character_set_results=utf8");
 mysqli_query($conn,"set session character_set_connection=utf8");
 ?>
 <?php 
+	$search = $_GET['search'];
 	$page = 1;
+
 	if($_GET['page']!=NULL){
 	$page = $_GET['page'];}
-	
+
 	$list = 5; // 한 페이지에 보여줄 게시글 갯수
 	$block = 5; // 한 페이지에 보여줄 블록 갯수 
 
-        $sql = 'select count(*) as total from board';
+        $sql = "SELECT count(*) as total FROM board WHERE title LIKE '%".$search."%' ";
+
         $result =  mysqli_query($conn, $sql);
 	$tmp = mysqli_fetch_array($result); 
 	$num = $tmp['total'];//총 게시글 갯수 
+
 	$pageNum = ceil($num/$list);//총 페이지 갯수 
 
 	$blockNum = ceil($pageNum/$block);//총 블록 갯수 
@@ -37,10 +41,11 @@ mysqli_query($conn,"set session character_set_connection=utf8");
 	if($page !=NULL){
 	$start = $_GET['page'];
 	}	
-	echo $start;
+
 	$board_num = $start*$list-$list;
 	if($start==0){$board_num=0;}
-        $sql2 = "select * from board order by num desc limit $board_num, $list";
+
+        $sql2 = "SELECT * FROM board WHERE title LIKE '%".$search."%' order by num desc limit $board_num, $list";
         $result2 =  mysqli_query($conn, $sql2);
 
 ?>
@@ -75,20 +80,21 @@ mysqli_query($conn,"set session character_set_connection=utf8");
 }
 ?>
 </table>
-	<a href="글목록.php?page=<?php if($s_page==1){echo 1;}else{echo $s_page-1;}?>">이전</a>
+	<a href="글검색.php?search=<?php echo $search;?>&page=<?php if($s_page==1){echo 1;}else{echo $s_page-1;}?>">이전</a>
 	<?php 
 	//이전은 스타트 아래로 가면 이전 블록이 되고, 다음은 엔드 위로 가면 다음 블록이 된다.
 	 for($p=$s_page; $p<=$e_page; $p++){//페이지는 시작 페이지부터 마지막 페이지 까지만 나오게 한다.
-	 echo"<a href='글목록.php?page=$p'>$p</a> ";
+	 echo"<a href='글검색.php?search=$search&page=$p'>$p</a> ";
 	 }
 	?>
 
 
-	<a href="글목록.php?page=<?php if($e_page<6){echo $e_page+1;}else{echo $pageNum-1;} ?>">다음</a>
+	<a href="글검색.php?search=<?php echo $search;?>&page=<?php if($e_page<6){echo $e_page+1;}else{echo $pageNum-1;} ?>">다음</a>
 
 <br>
 <a href="글쓰기.html">글쓰기</a>
 <a href="메인.php">메인으로 돌아가기</a>
+<a href="글목록.php">글목록으로 돌아가기</a>
 <form action="글검색.php" method="get">
 검색창 : <input type="text" name ="search"><input type="submit" value="검색">
 
