@@ -84,7 +84,7 @@ mysqli_query($conn,"set session character_set_connection=utf8");
 	?>
 
 
-	<a href="글목록.php?page=<?php if($e_page<6){echo $e_page+1;}else{echo $pageNum-1;} ?>">다음</a>
+	<a href="글목록.php?page=<?php if($e_page<$pageNum){echo $e_page+1;} else if($e_page==$pageNum){echo $pageNum;} ?>">다음</a>
 
 <br>
 <a href="글쓰기.html">글쓰기</a>

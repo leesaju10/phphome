@@ -6,6 +6,9 @@ $conn = mysqli_connect(
   'Admin1347!',
   'konyang');
 ini_set("display_errors", "1");
+mysqli_query($conn,"set session character_set_client=utf8");
+mysqli_query($conn,"set session character_set_results=utf8");
+mysqli_query($conn,"set session character_set_connection=utf8");
 ?>
 <?php 
 
