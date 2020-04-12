@@ -21,8 +21,6 @@ $password = GenerateString(10);
 $encrypted_passwd = password_hash($password, PASSWORD_DEFAULT);
 ?>
 
-=======
->>>>>>> 83e63f369f8bb3f4d0844c959b4ac5028e9a84d2
 <?php
 $conn = mysqli_connect(
   'localhost',
@@ -30,14 +28,11 @@ $conn = mysqli_connect(
   'Admin1347!',
   'konyang');
 ini_set("display_errors", "1");
-<<<<<<< HEAD
 
 mysqli_query($conn,"set session character_set_client=utf8");
 mysqli_query($conn,"set session character_set_results=utf8");
 mysqli_query($conn,"set session character_set_connection=utf8");
 
-=======
->>>>>>> 83e63f369f8bb3f4d0844c959b4ac5028e9a84d2
 $email=$_POST['email'];
 $sql = 'SELECT * FROM `Profile` WHERE email="'.$email.'"';
 $result =  mysqli_query($conn, $sql);
@@ -45,7 +40,6 @@ $row = mysqli_fetch_array($result);
 $id = $row['id'];
 $nickname = $row['name'];
 if($row['email']!=NULL){
-<<<<<<< HEAD
 
     $to = "$email";
     $subject = $nickname."님 아이디/비밀번호 찾기 입니다.";
@@ -61,10 +55,9 @@ $result2 =  mysqli_query($conn, $sql2);
     else{
 	echo "fail";
 }
-=======
+
     echo "<script> alert('이메일이 존재합니다.');</script>";
 
->>>>>>> 83e63f369f8bb3f4d0844c959b4ac5028e9a84d2
 }
 else{
     echo "<script> alert('존재하지 않는 이메일 입니다.');
@@ -72,8 +65,4 @@ else{
     </script>";
 }
 ?>
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 83e63f369f8bb3f4d0844c959b4ac5028e9a84d2
